@@ -1,0 +1,175 @@
+============================================================
+  ASKMYNOTES — 5-MINUTE VIDEO PRESENTATION SCRIPT
+  Team of 5 Members
+============================================================
+
+TOTAL DURATION: ~5 minutes
+MEMBER 1 — Lead Presenter / Core Explainer (~2 min 30 sec)
+MEMBER 2 — Feature Walkthrough (~45 sec)
+MEMBER 3 — Study Mode Demo (~40 sec)
+MEMBER 4 — Architecture & Tech Stack (~35 sec)
+MEMBER 5 — Closing & Future Scope (~30 sec)
+
+============================================================
+MEMBER 1 — INTRODUCTION + PROBLEM + SOLUTION + DEMO SETUP
+(0:00 — 2:30)
+============================================================
+
+[ON SCREEN: Landing page of AskMyNotes]
+
+MEMBER 1:
+"Hey everyone! We are Team [Your Team Name], and today we're presenting AskMyNotes — your private AI-powered study copilot."
+
+[PAUSE — 2 sec]
+
+"So let's start with the problem. As students, we all deal with tons of notes — PDFs, text files, lecture materials. When exam time comes, the biggest struggle is finding specific answers buried inside those notes. You could use ChatGPT, but here's the issue — ChatGPT doesn't know what's in YOUR notes. It hallucinates. It guesses. And you can't trust it for exam prep."
+
+[ON SCREEN: Scroll through landing page slowly]
+
+"That's exactly why we built AskMyNotes. It's an AI study tool that ONLY answers from your uploaded notes. No guessing. No hallucinations. If the answer isn't in your notes, it tells you — clearly."
+
+[PAUSE — 1 sec]
+
+"Let me show you how it works."
+
+[ON SCREEN: Navigate to /app — Setup page]
+
+"The app has three core sections — Setup, Ask Notes, and Study Mode. Let me start with Setup."
+
+"Here, you can create up to three subjects — say Biology, History, and Computer Science. For each subject, you upload your notes as PDF or TXT files. The system processes these files, chunks them, generates vector embeddings, and stores them in MongoDB for retrieval."
+
+[ON SCREEN: Create a subject, upload a file — show the card updating]
+
+"Once uploaded, your notes are indexed and ready. You can see the file names listed as tags on each subject card. You can also rename or delete subjects anytime."
+
+[PAUSE — 1 sec]
+
+"Now here's the important part — the AI is strictly scoped. If I'm asking a question about Biology, it will NEVER pull answers from my History notes. Each subject is completely isolated."
+
+"Let me now hand it over to [Member 2] to walk you through the Ask Notes feature."
+
+
+============================================================
+MEMBER 2 — ASK NOTES FEATURE WALKTHROUGH
+(2:30 — 3:15)
+============================================================
+
+[ON SCREEN: Navigate to Ask Notes tab, select a subject]
+
+MEMBER 2:
+"Thanks, [Member 1]. So this is the Ask Notes page — the core of AskMyNotes."
+
+"You select a subject from the dropdown, and then you can type or even voice-ask any question related to your uploaded notes."
+
+[ON SCREEN: Type a question and submit]
+
+"Let's ask — 'What is photosynthesis?' — and here's the response."
+
+[ON SCREEN: Show AI response with answer, confidence badge, source files, and evidence]
+
+"Notice a few things here. First, the answer is generated strictly from the uploaded notes — not from the internet. Second, you get a confidence score — High, Medium, or Low — so you know how reliable the answer is. Third, you see the source file name, so you know exactly which document the answer came from. And finally, you can expand the evidence snippets to see the exact text from your notes that was used."
+
+"We also support voice input — you can click the mic, ask your question out loud, and the AI responds. If voice answers are enabled, it'll even read the answer back to you."
+
+"Now let me hand it over to [Member 3] for Study Mode."
+
+
+============================================================
+MEMBER 3 — STUDY MODE DEMO
+(3:15 — 3:55)
+============================================================
+
+[ON SCREEN: Navigate to Study Mode tab]
+
+MEMBER 3:
+"Thanks, [Member 2]. Study Mode is where AskMyNotes really becomes your personal tutor."
+
+"You select a subject and hit 'Generate Questions'. The AI analyzes your notes and creates five multiple-choice questions and three short-answer questions — all based on your content."
+
+[ON SCREEN: Click Generate, show questions loading]
+
+"Each MCQ has four options. When you pick an answer, it immediately tells you if you're right or wrong, shows the correct answer, gives an explanation, and even cites the exact part of your notes it came from."
+
+[ON SCREEN: Answer one MCQ correctly, one incorrectly — show green/red glow]
+
+"For short-answer questions, you can click 'Reveal Model Answer' to see a detailed response with citations."
+
+"There's also a live progress bar and a score counter at the top, so you can track your performance in real time."
+
+"Over to [Member 4] for the tech behind all of this."
+
+
+============================================================
+MEMBER 4 — ARCHITECTURE & TECH STACK
+(3:55 — 4:30)
+============================================================
+
+[ON SCREEN: Show a simple architecture diagram or the tech stack slide]
+
+MEMBER 4:
+"Thanks, [Member 3]. Let me quickly walk you through the architecture."
+
+"AskMyNotes uses a RAG pipeline — that's Retrieval-Augmented Generation. Here's how it works:"
+
+"Step one — when you upload a PDF or TXT file, the backend extracts the text, splits it into chunks, and stores those chunks in MongoDB along with metadata."
+
+"Step two — when you ask a question, the system retrieves the most relevant chunks from the selected subject's notes using similarity matching."
+
+"Step three — those chunks are passed as context to Google's Gemini 1.5 model, which generates a grounded answer — strictly from the retrieved content."
+
+"Our tech stack:"
+"— Frontend: React with Vite, styled with a custom glassmorphism design system."
+"— Backend: Node.js with Express."
+"— Database: MongoDB Atlas."
+"— AI Model: Google Gemini 1.5 via the Generative AI SDK."
+"— Auth: Clerk for user authentication."
+
+"The key design decision here is strict subject isolation — each subject's notes are stored and queried independently, so there's zero cross-contamination between topics."
+
+"Now [Member 5] will wrap things up."
+
+
+============================================================
+MEMBER 5 — CLOSING + FUTURE SCOPE
+(4:30 — 5:00)
+============================================================
+
+[ON SCREEN: Show the landing page or a summary slide]
+
+MEMBER 5:
+"Thanks, [Member 4]. So to quickly summarize — AskMyNotes is not just another AI chatbot. It's a controlled, citation-backed, subject-isolated study tool that keeps students honest and focused."
+
+"For future development, we're planning to add:"
+"— Flashcard generation from notes"
+"— Multi-language support"
+"— Collaborative study rooms"
+"— Export quiz results as PDF"
+"— And a mobile-responsive progressive web app"
+
+"We believe every student deserves an AI tutor that's truthful, transparent, and grounded in their own learning material."
+
+"Thank you for watching. We're Team [Your Team Name], and this was AskMyNotes."
+
+[ON SCREEN: Landing page with 'Launch App' CTA visible]
+
+============================================================
+END OF SCRIPT
+============================================================
+
+TIME BREAKDOWN SUMMARY:
+-----------------------
+Member 1:  2 min 30 sec  (Introduction + Problem + Solution + Setup Demo)
+Member 2:      45 sec    (Ask Notes Feature Walkthrough)
+Member 3:      40 sec    (Study Mode Demo)
+Member 4:      35 sec    (Architecture & Tech Stack)
+Member 5:      30 sec    (Closing & Future Scope)
+-----------------------
+TOTAL:     5 min 00 sec
+
+TIPS FOR RECORDING:
+- Practice each section 2-3 times before recording
+- Keep screen recordings smooth — avoid rapid mouse movements
+- Speak clearly and at a natural pace
+- Have sample data pre-loaded so demos work without waiting
+- Use a clean browser window (no bookmarks bar, no extra tabs)
+- Record in 1080p or higher for clarity

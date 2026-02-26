@@ -1,0 +1,7 @@
+{
+    "ignore": [
+        "uploads/*"
+    ],
+    "signal": "SIGTERM",
+    "delay": 1500
+}

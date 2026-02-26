@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useUser, useClerk } from '@clerk/clerk-react'
 import { generateStudy } from '../api/client'
+import { RefreshCw, Sparkles, CheckCircle, XCircle, FileText, ChevronDown, ChevronRight, BookOpen } from 'lucide-react'
 
 export default function StudyPanel({ subjects, activeSubjectId }) {
   const { isSignedIn } = useUser()
@@ -68,7 +69,7 @@ export default function StudyPanel({ subjects, activeSubjectId }) {
           onClick={handleGenerate}
           disabled={!selId || loading}
         >
-          {loading ? <><span className="spin"></span> Generating...</> : ' Generate Questions'}
+          {loading ? <><span className="spin"><RefreshCw size={16} /></span> Generating...</> : <><Sparkles size={16} style={{ marginRight: '6px', verticalAlign: 'text-bottom' }} /> Generate Questions</>}
         </button>
       </div>
 
@@ -131,9 +132,9 @@ export default function StudyPanel({ subjects, activeSubjectId }) {
 
               {answered[qi] && (
                 <div className={`explain ${picked[qi] === mcq.correct ? 'explain-ok' : 'explain-no'}`}>
-                  <strong>{picked[qi] === mcq.correct ? ' Correct!' : ` Answer: ${mcq.correct}`}</strong>
+                  <strong>{picked[qi] === mcq.correct ? <><CheckCircle size={14} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> Correct!</> : <><XCircle size={14} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> Answer: {mcq.correct}</>}</strong>
                   <p>{mcq.explanation}</p>
-                  <span className="cite"> {mcq.citation}</span>
+                  <span className="cite"><FileText size={12} style={{ verticalAlign: 'middle', marginRight: '2px' }} /> {mcq.citation}</span>
                 </div>
               )}
             </div>
@@ -154,13 +155,13 @@ export default function StudyPanel({ subjects, activeSubjectId }) {
                 className="btn btn-ghost"
                 onClick={() => setShowSAQ(p => ({ ...p, [si]: !p[si] }))}
               >
-                {showSAQ[si] ? ' Hide Answer' : ' Reveal Model Answer'}
+                {showSAQ[si] ? <><ChevronDown size={14} style={{ verticalAlign: 'middle' }} /> Hide Answer</> : <><ChevronRight size={14} style={{ verticalAlign: 'middle' }} /> Reveal Model Answer</>}
               </button>
 
               {showSAQ[si] && (
                 <div className="model-answer">
                   <p>{saq.modelAnswer}</p>
-                  <span className="cite"> {saq.citation}</span>
+                  <span className="cite"><FileText size={12} style={{ verticalAlign: 'middle', marginRight: '2px' }} /> {saq.citation}</span>
                 </div>
               )}
             </div>
@@ -170,7 +171,7 @@ export default function StudyPanel({ subjects, activeSubjectId }) {
 
       {!data && !loading && (
         <div className="empty">
-          <span className="empty-icon"></span>
+          <span className="empty-icon"><BookOpen size={48} /></span>
           <p>Select a subject and generate questions to start studying</p>
         </div>
       )}

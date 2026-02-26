@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useUser, useClerk } from '@clerk/clerk-react'
 import { createSubject, uploadFiles, deleteSubject, renameSubject } from '../api/client'
+import { CheckCircle, Edit2, Trash2, FileText, UploadCloud, FolderOpen, X, Check } from 'lucide-react'
 
 export default function SubjectSetup({ subjects, onRefresh }) {
   const { isSignedIn } = useUser()
@@ -110,7 +111,7 @@ export default function SubjectSetup({ subjects, onRefresh }) {
         </div>
       ) : (
         <div className="notice notice-ok" style={{ maxWidth: 600, margin: '0 auto 2rem' }}>
-           All 3 subjects created — you're all set!
+          <CheckCircle size={16} style={{ marginRight: '6px', verticalAlign: 'middle' }} /> All 3 subjects created — you're all set!
         </div>
       )}
 
@@ -138,8 +139,8 @@ export default function SubjectSetup({ subjects, onRefresh }) {
                         }}
                         autoFocus
                       />
-                      <button className="btn btn-small btn-save" onClick={() => handleRename(s._id)}></button>
-                      <button className="btn btn-small btn-cancel" onClick={cancelRename}></button>
+                      <button className="btn btn-small btn-save" onClick={() => handleRename(s._id)}><Check size={14} /></button>
+                      <button className="btn btn-small btn-cancel" onClick={cancelRename}><X size={14} /></button>
                     </div>
                   ) : (
                     <>
@@ -153,7 +154,7 @@ export default function SubjectSetup({ subjects, onRefresh }) {
                 <div className="card-actions">
                   {!isEditing && (
                     <button className="btn-icon" onClick={() => startRename(s)} title="Rename">
-                      
+                      <Edit2 size={16} />
                     </button>
                   )}
                   <button
@@ -161,10 +162,10 @@ export default function SubjectSetup({ subjects, onRefresh }) {
                     onClick={() => handleDelete(s._id, s.name)}
                     title="Delete"
                   >
-                    
+                    <Trash2 size={16} />
                   </button>
                 </div>
-                {state === 'done' && <span className="badge-ok"> Loaded</span>}
+                {state === 'done' && <span className="badge-ok"><CheckCircle size={12} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Loaded</span>}
               </div>
 
               {/* File pills */}
@@ -172,7 +173,7 @@ export default function SubjectSetup({ subjects, onRefresh }) {
                 <div className="file-pills">
                   {s.fileNames.map((fname, fi) => (
                     <span key={fi} className="file-pill">
-                      <span className="file-pill-icon"></span>
+                      <span className="file-pill-icon"><FileText size={12} /></span>
                       {fname}
                     </span>
                   ))}
@@ -182,9 +183,9 @@ export default function SubjectSetup({ subjects, onRefresh }) {
               {/* Upload dropzone */}
               <label className="dropzone">
                 {state === 'uploading'
-                  ? <><span className="spin"></span> Processing files...</>
+                  ? <><span className="spin"><UploadCloud size={16} /></span> Processing files...</>
                   : <>
-                    <span className="drop-icon">↑</span>
+                    <span className="drop-icon"><UploadCloud size={32} /></span>
                     <span>Drop PDF or TXT files here</span>
                     <span className="drop-sub">Multiple files allowed</span>
                   </>
@@ -202,7 +203,7 @@ export default function SubjectSetup({ subjects, onRefresh }) {
 
       {subjects.length === 0 && (
         <div className="empty">
-          <span className="empty-icon"></span>
+          <span className="empty-icon"><FolderOpen size={48} /></span>
           <p>Create your first subject above to get started</p>
         </div>
       )}

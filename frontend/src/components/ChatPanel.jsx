@@ -2,12 +2,13 @@ import { useState, useRef, useEffect, useCallback } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { useUser, useClerk } from '@clerk/clerk-react'
 import { askQuestion } from '../api/client'
+import { Circle, Sparkles, Volume2, VolumeX, MessageSquare, Mic, MicOff, ChevronDown, ChevronRight, Square } from 'lucide-react'
 
 // Confidence badge colors
 const CONF = {
-  High: { cls: 'conf-high', label: ' High Confidence' },
-  Medium: { cls: 'conf-mid', label: ' Medium Confidence' },
-  Low: { cls: 'conf-low', label: ' Low Confidence' },
+  High: { cls: 'conf-high', label: <><Circle size={10} fill="currentColor" style={{ marginRight: '4px', verticalAlign: 'middle' }} /> High Confidence</> },
+  Medium: { cls: 'conf-mid', label: <><Circle size={10} fill="currentColor" style={{ marginRight: '4px', verticalAlign: 'middle', opacity: 0.5 }} /> Medium Confidence</> },
+  Low: { cls: 'conf-low', label: <><Circle size={10} style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Low Confidence</> },
 }
 
 // Check if browser supports speech recognition
@@ -199,7 +200,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
 
         {subject && (
           <span className="subject-badge">
-            <span></span>
+            <span><Sparkles size={14} style={{ verticalAlign: 'text-bottom', marginRight: '4px' }} /></span>
             {subject.name}
           </span>
         )}
@@ -211,7 +212,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
           onClick={toggleSpeaker}
           title={speakerEnabled ? 'Voice answers ON — click to mute' : 'Voice answers OFF — click to unmute'}
         >
-          {speakerEnabled ? '' : ''}
+          {speakerEnabled ? <Volume2 size={16} /> : <VolumeX size={16} />}
         </button>
         <button className="btn btn-ghost" onClick={() => setMessages([])}>Clear</button>
       </div>
@@ -220,7 +221,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
       <div className="chat-msgs">
         {noSubject ? (
           <div className="empty">
-            <span className="empty-icon"></span>
+            <span className="empty-icon"><MessageSquare size={48} /></span>
             <p style={{ fontSize: '1.1rem', fontWeight: 600 }}>Welcome to Ask Notes</p>
             {subjects.length > 0 ? (
               <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
@@ -236,7 +237,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
           <>
             {messages.length === 0 && (
               <div className="empty">
-                <span className="empty-icon"></span>
+                <span className="empty-icon"><MessageSquare size={48} /></span>
                 Ask anything about <strong>{subject?.name}</strong>
               </div>
             )}
@@ -274,7 +275,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
                           className="evidence-toggle"
                           onClick={() => setExpanded(p => ({ ...p, [i]: !p[i] }))}
                         >
-                          {expanded[i] ? ' Hide Evidence' : ' Show Evidence'}
+                          {expanded[i] ? <><ChevronDown size={14} style={{ verticalAlign: 'text-bottom' }} /> Hide Evidence</> : <><ChevronRight size={14} style={{ verticalAlign: 'text-bottom' }} /> Show Evidence</>}
                         </button>
                         {expanded[i] && (
                           <div className="snippets">
@@ -318,7 +319,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
               setAskedByVoice(false)
             }}
             onKeyDown={e => e.key === 'Enter' && !e.shiftKey && handleSend()}
-            placeholder={noSubject ? 'Select a subject above to start asking...' : isListening ? ' Listening...' : `Ask about ${subject?.name || 'your notes'}...`}
+            placeholder={noSubject ? 'Select a subject above to start asking...' : isListening ? 'Listening...' : `Ask about ${subject?.name || 'your notes'}...`}
             disabled={loading || noSubject}
           />
           <button
@@ -327,7 +328,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
             disabled={loading || noSubject}
             title={isListening ? 'Stop listening' : 'Voice input'}
           >
-            {isListening ? '' : ''}
+            {isListening ? <Square fill="currentColor" size={16} /> : <Mic size={16} />}
           </button>
         </div>
         <button

@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Sparkles, FileText, MessageSquare, Lock, Link, BarChart, Mic, AlertTriangle, Zap } from 'lucide-react'
 import '../LandingPage.css'
 
 // Intersection Observer hook for scroll animations
@@ -54,7 +55,7 @@ export default function LandingPage() {
                 {/*  Navigation  */}
                 <nav className="landing-nav">
                     <div className="landing-nav-brand">
-                        <div className="brand-mark"></div>
+                        <div className="brand-mark"><Sparkles size={24} /></div>
                         <span className="brand-name">Ask<span>My</span>Notes</span>
                     </div>
 
@@ -114,7 +115,7 @@ export default function LandingPage() {
                     <div className="steps-grid">
                         <div className="step-card anim-in" ref={addRef}>
                             <p className="step-num">Step 01</p>
-                            <div className="step-icon"></div>
+                            <div className="step-icon"><FileText size={32} /></div>
                             <h3 className="step-title">Upload Your Notes</h3>
                             <p className="step-desc">
                                 Drop your PDF or TXT files into any subject. Your data stays private and isolated.
@@ -123,7 +124,7 @@ export default function LandingPage() {
 
                         <div className="step-card anim-in" ref={addRef}>
                             <p className="step-num">Step 02</p>
-                            <div className="step-icon"></div>
+                            <div className="step-icon"><MessageSquare size={32} /></div>
                             <h3 className="step-title">Ask Questions</h3>
                             <p className="step-desc">
                                 Ask anything about your notes. Get cited answers scoped to the selected subject.
@@ -132,7 +133,7 @@ export default function LandingPage() {
 
                         <div className="step-card anim-in" ref={addRef}>
                             <p className="step-num">Step 03</p>
-                            <div className="step-icon"></div>
+                            <div className="step-icon"><Sparkles size={32} /></div>
                             <h3 className="step-title">Study Mode</h3>
                             <p className="step-desc">
                                 Generate MCQs and short answer questions with explanations and citations.
@@ -155,7 +156,7 @@ export default function LandingPage() {
 
                     <div className="features-grid">
                         <div className="feature-card anim-in" ref={addRef}>
-                            <div className="feature-icon"></div>
+                            <div className="feature-icon"><Lock size={24} /></div>
                             <div className="feature-info">
                                 <h3 className="feature-title">Strict Subject Isolation</h3>
                                 <p className="feature-desc">
@@ -165,7 +166,7 @@ export default function LandingPage() {
                         </div>
 
                         <div className="feature-card anim-in" ref={addRef}>
-                            <div className="feature-icon"></div>
+                            <div className="feature-icon"><Link size={24} /></div>
                             <div className="feature-info">
                                 <h3 className="feature-title">Citations + Evidence</h3>
                                 <p className="feature-desc">
@@ -175,7 +176,7 @@ export default function LandingPage() {
                         </div>
 
                         <div className="feature-card anim-in" ref={addRef}>
-                            <div className="feature-icon"></div>
+                            <div className="feature-icon"><BarChart size={24} /></div>
                             <div className="feature-info">
                                 <h3 className="feature-title">Confidence Scoring</h3>
                                 <p className="feature-desc">
@@ -185,7 +186,7 @@ export default function LandingPage() {
                         </div>
 
                         <div className="feature-card anim-in" ref={addRef}>
-                            <div className="feature-icon"></div>
+                            <div className="feature-icon"><Mic size={24} /></div>
                             <div className="feature-info">
                                 <h3 className="feature-title">Voice-Based Teacher Mode</h3>
                                 <p className="feature-desc">
@@ -206,7 +207,7 @@ export default function LandingPage() {
                                 The system never guesses. If your notes don't contain the answer, it says so — clearly and honestly.
                             </p>
                             <div className="why-refusal">
-                                 "Not found in your notes for [Subject]"
+                                <AlertTriangle size={16} style={{ verticalAlign: 'text-bottom', marginRight: '6px' }} /> "Not found in your notes for [Subject]"
                             </div>
                         </div>
                     </div>
@@ -236,7 +237,7 @@ export default function LandingPage() {
                 <footer className="landing-footer">
                     <div className="footer-left">
                         <div className="footer-brand">
-                            <div className="brand-mark"></div>
+                            <div className="brand-mark"><Sparkles size={24} /></div>
                             <span className="brand-name">Ask<span>My</span>Notes</span>
                         </div>
                         <span className="footer-tagline">Your private AI study copilot</span>
@@ -252,7 +253,7 @@ export default function LandingPage() {
                             GitHub
                         </a>
                         <span className="footer-tech">
-                             Built with Gemini 1.5 + RAG
+                            <Zap size={14} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> Built with Gemini 1.5 + RAG
                         </span>
                     </div>
                 </footer>

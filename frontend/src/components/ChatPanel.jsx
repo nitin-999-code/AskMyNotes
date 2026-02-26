@@ -63,6 +63,17 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
 
     const utterance = new SpeechSynthesisUtterance(plainText)
     utterance.lang = 'en-US'
+
+    // Attempt to select a male voice
+    const voices = window.speechSynthesis.getVoices()
+    const maleVoice = voices.find(v =>
+      v.lang.startsWith('en') &&
+      (v.name.includes('Male') || v.name.includes('David') || v.name.includes('Arthur') || v.name.includes('Daniel') || v.name.includes('Alex') || v.name.includes('Fred') || v.name.includes('Guy') || v.name.includes('Matthew') || v.name.includes('Mark'))
+    )
+    if (maleVoice) {
+      utterance.voice = maleVoice
+    }
+
     utterance.rate = 1
     utterance.pitch = 1
     utterance.onstart = () => setIsSpeaking(true)

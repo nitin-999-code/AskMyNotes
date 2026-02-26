@@ -194,9 +194,23 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
       <div className="empty">
         <span className="empty-icon">◉</span>
         <p>Select a subject to start asking questions</p>
-        <p className="page-sub" style={{ fontSize: '0.85rem' }}>
-          Choose a subject from the top navigation or Setup page
-        </p>
+        {subjects.length > 0 ? (
+          <div style={{ marginTop: '1rem', width: '100%', maxWidth: '320px' }}>
+            <select
+              className="select"
+              value=""
+              onChange={e => onSubjectChange(e.target.value)}
+              style={{ width: '100%', textAlign: 'center' }}
+            >
+              <option value="" disabled>Choose a subject...</option>
+              {subjects.map(s => <option key={s._id} value={s._id}>{s.name}</option>)}
+            </select>
+          </div>
+        ) : (
+          <p className="page-sub" style={{ fontSize: '0.85rem' }}>
+            Go to Setup to create subjects and upload notes first
+          </p>
+        )}
       </div>
     </div>
   )

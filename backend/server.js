@@ -17,7 +17,12 @@ if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
 app.use(cors({
   origin: process.env.ALLOWED_ORIGINS
     ? process.env.ALLOWED_ORIGINS.split(',')
-    : ['http://localhost:5173', 'http://localhost:5174'],
+    : [
+      'http://localhost:5173',
+      'http://localhost:5174',
+      'https://ask-my-notes-backend.vercel.app',
+      /\.vercel\.app$/,
+    ],
   credentials: true,
 }));
 app.use(express.json());

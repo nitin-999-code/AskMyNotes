@@ -6,9 +6,12 @@ const fs = require('fs');
 const Subject = require('../models/Subject');
 const { extractText } = require('../services/pdfParser');
 
-// Store uploads temporarily
+// Store uploads temporarily — use /tmp on Vercel (read-only filesystem)
+const isVercel = process.env.VERCEL === '1' || process.env.VERCEL === 'true';
+const uploadDir = isVercel ? '/tmp/uploads' : path.join(__dirname, '../uploads/');
+
 const upload = multer({
-  dest: path.join(__dirname, '../uploads/'),
+  dest: uploadDir,
   limits: { fileSize: 25 * 1024 * 1024 }, // 25MB max per file
   fileFilter: (req, file, cb) => {
     const ext = path.extname(file.originalname).toLowerCase();

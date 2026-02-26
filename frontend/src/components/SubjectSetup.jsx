@@ -110,7 +110,7 @@ export default function SubjectSetup({ subjects, onRefresh }) {
         </div>
       ) : (
         <div className="notice notice-ok" style={{ maxWidth: 600, margin: '0 auto 2rem' }}>
-          ✓ All 3 subjects created — you're all set!
+           All 3 subjects created — you're all set!
         </div>
       )}
 
@@ -138,8 +138,8 @@ export default function SubjectSetup({ subjects, onRefresh }) {
                         }}
                         autoFocus
                       />
-                      <button className="btn btn-small btn-save" onClick={() => handleRename(s._id)}>✓</button>
-                      <button className="btn btn-small btn-cancel" onClick={cancelRename}>✕</button>
+                      <button className="btn btn-small btn-save" onClick={() => handleRename(s._id)}></button>
+                      <button className="btn btn-small btn-cancel" onClick={cancelRename}></button>
                     </div>
                   ) : (
                     <>
@@ -153,7 +153,7 @@ export default function SubjectSetup({ subjects, onRefresh }) {
                 <div className="card-actions">
                   {!isEditing && (
                     <button className="btn-icon" onClick={() => startRename(s)} title="Rename">
-                      ✏️
+                      
                     </button>
                   )}
                   <button
@@ -161,10 +161,10 @@ export default function SubjectSetup({ subjects, onRefresh }) {
                     onClick={() => handleDelete(s._id, s.name)}
                     title="Delete"
                   >
-                    🗑️
+                    
                   </button>
                 </div>
-                {state === 'done' && <span className="badge-ok">✓ Loaded</span>}
+                {state === 'done' && <span className="badge-ok"> Loaded</span>}
               </div>
 
               {/* File pills */}
@@ -172,7 +172,7 @@ export default function SubjectSetup({ subjects, onRefresh }) {
                 <div className="file-pills">
                   {s.fileNames.map((fname, fi) => (
                     <span key={fi} className="file-pill">
-                      <span className="file-pill-icon">📄</span>
+                      <span className="file-pill-icon"></span>
                       {fname}
                     </span>
                   ))}
@@ -182,7 +182,7 @@ export default function SubjectSetup({ subjects, onRefresh }) {
               {/* Upload dropzone */}
               <label className="dropzone">
                 {state === 'uploading'
-                  ? <><span className="spin">⟳</span> Processing files...</>
+                  ? <><span className="spin"></span> Processing files...</>
                   : <>
                     <span className="drop-icon">↑</span>
                     <span>Drop PDF or TXT files here</span>
@@ -202,7 +202,7 @@ export default function SubjectSetup({ subjects, onRefresh }) {
 
       {subjects.length === 0 && (
         <div className="empty">
-          <span className="empty-icon">◈</span>
+          <span className="empty-icon"></span>
           <p>Create your first subject above to get started</p>
         </div>
       )}

@@ -27,7 +27,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// ── MongoDB connection caching for serverless ──
+//  MongoDB connection caching for serverless 
 let isConnected = false;
 
 async function connectDB() {
@@ -40,7 +40,7 @@ async function connectDB() {
     bufferCommands: false,
   });
   isConnected = true;
-  console.log('✅ MongoDB connected');
+  console.log(' MongoDB connected');
 }
 
 // Ensure DB is connected before every request (serverless-safe)
@@ -49,7 +49,7 @@ app.use(async (req, res, next) => {
     await connectDB();
     next();
   } catch (err) {
-    console.error('❌ MongoDB connection failed:', err.message);
+    console.error(' MongoDB connection failed:', err.message);
     res.status(500).json({ error: 'Database connection failed' });
   }
 });
@@ -63,36 +63,36 @@ app.use('/users', require('./routes/users'));
 // Health check
 app.get('/health', (req, res) => res.json({ status: 'ok', message: 'AskMyNotes API running' }));
 
-// ── Local development: start server normally ──
+//  Local development: start server normally 
 if (!isVercel) {
   let server;
 
   connectDB()
     .then(() => {
       server = app.listen(process.env.PORT || 5000, () => {
-        console.log(`🚀 Server running on http://localhost:${process.env.PORT || 5000}`);
+        console.log(` Server running on http://localhost:${process.env.PORT || 5000}`);
       });
 
       server.on('error', (err) => {
         if (err.code === 'EADDRINUSE') {
-          console.error(`❌ Port ${process.env.PORT || 5000} is already in use. Retrying in 2 seconds...`);
+          console.error(` Port ${process.env.PORT || 5000} is already in use. Retrying in 2 seconds...`);
           setTimeout(() => {
             server.close();
             server.listen(process.env.PORT || 5000);
           }, 2000);
         } else {
-          console.error('❌ Server error:', err.message);
+          console.error(' Server error:', err.message);
         }
       });
     })
     .catch(err => {
-      console.error('❌ MongoDB failed:', err.message);
+      console.error(' MongoDB failed:', err.message);
       process.exit(1);
     });
 
   // Graceful shutdown
   function shutdown() {
-    console.log('🔄 Shutting down gracefully...');
+    console.log(' Shutting down gracefully...');
     if (server) {
       server.close(() => {
         mongoose.connection.close(false).then(() => {

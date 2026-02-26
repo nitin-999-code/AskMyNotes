@@ -2,16 +2,16 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-reac
 
 export default function TopNav({ subjects, activeTab, activeSubjectId, onTab, onSubject }) {
     const tabs = [
-        { id: 'setup', icon: '◈', label: 'Setup' },
-        { id: 'chat', icon: '◉', label: 'Ask Notes' },
-        { id: 'study', icon: '◎', label: 'Study Mode' },
+        { id: 'setup', icon: '', label: 'Setup' },
+        { id: 'chat', icon: '', label: 'Ask Notes' },
+        { id: 'study', icon: '', label: 'Study Mode' },
     ]
 
     return (
         <nav className="topnav">
             {/* Left — Brand */}
             <div className="topnav-brand">
-                <div className="brand-mark">✦</div>
+                <div className="brand-mark"></div>
                 <span className="brand-name">Ask<span>My</span>Notes</span>
             </div>
 

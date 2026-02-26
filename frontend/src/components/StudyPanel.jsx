@@ -68,7 +68,7 @@ export default function StudyPanel({ subjects, activeSubjectId }) {
           onClick={handleGenerate}
           disabled={!selId || loading}
         >
-          {loading ? <><span className="spin">⟳</span> Generating...</> : '✦ Generate Questions'}
+          {loading ? <><span className="spin"></span> Generating...</> : ' Generate Questions'}
         </button>
       </div>
 
@@ -131,9 +131,9 @@ export default function StudyPanel({ subjects, activeSubjectId }) {
 
               {answered[qi] && (
                 <div className={`explain ${picked[qi] === mcq.correct ? 'explain-ok' : 'explain-no'}`}>
-                  <strong>{picked[qi] === mcq.correct ? '✓ Correct!' : `✗ Answer: ${mcq.correct}`}</strong>
+                  <strong>{picked[qi] === mcq.correct ? ' Correct!' : ` Answer: ${mcq.correct}`}</strong>
                   <p>{mcq.explanation}</p>
-                  <span className="cite">📄 {mcq.citation}</span>
+                  <span className="cite"> {mcq.citation}</span>
                 </div>
               )}
             </div>
@@ -154,13 +154,13 @@ export default function StudyPanel({ subjects, activeSubjectId }) {
                 className="btn btn-ghost"
                 onClick={() => setShowSAQ(p => ({ ...p, [si]: !p[si] }))}
               >
-                {showSAQ[si] ? '▾ Hide Answer' : '▸ Reveal Model Answer'}
+                {showSAQ[si] ? ' Hide Answer' : ' Reveal Model Answer'}
               </button>
 
               {showSAQ[si] && (
                 <div className="model-answer">
                   <p>{saq.modelAnswer}</p>
-                  <span className="cite">📄 {saq.citation}</span>
+                  <span className="cite"> {saq.citation}</span>
                 </div>
               )}
             </div>
@@ -170,7 +170,7 @@ export default function StudyPanel({ subjects, activeSubjectId }) {
 
       {!data && !loading && (
         <div className="empty">
-          <span className="empty-icon">◎</span>
+          <span className="empty-icon"></span>
           <p>Select a subject and generate questions to start studying</p>
         </div>
       )}

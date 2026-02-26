@@ -7,19 +7,19 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 // This massive context = we just paste all notes directly, no chunking needed
 const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
-// ─────────────────────────────────────────────────────────────
+// 
 //  BUILD NOTES CONTEXT
 //  Joins all uploaded files into one big context string
-// ─────────────────────────────────────────────────────────────
+// 
 function buildNotesContext(notes) {
   return notes
     .map(n => `=== FILE: ${n.filename} ===\n${n.text}`)
     .join('\n\n');
 }
 
-// ─────────────────────────────────────────────────────────────
+// 
 //  Q&A  — answer ONE question using the notes as context
-// ─────────────────────────────────────────────────────────────
+// 
 async function answerQuestion(subjectName, question, notes, history = []) {
   const notesContext = buildNotesContext(notes);
 
@@ -100,9 +100,9 @@ If question cannot be answered from notes, respond:
   }
 }
 
-// ─────────────────────────────────────────────────────────────
+// 
 //  STUDY MODE — generate 5 MCQs + 3 Short Answer Questions
-// ─────────────────────────────────────────────────────────────
+// 
 async function generateStudyContent(subjectName, notes) {
   const notesContext = buildNotesContext(notes);
 

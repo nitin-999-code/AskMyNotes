@@ -5,9 +5,9 @@ import { askQuestion } from '../api/client'
 
 // Confidence badge colors
 const CONF = {
-  High: { cls: 'conf-high', label: '● High Confidence' },
-  Medium: { cls: 'conf-mid', label: '◐ Medium Confidence' },
-  Low: { cls: 'conf-low', label: '○ Low Confidence' },
+  High: { cls: 'conf-high', label: ' High Confidence' },
+  Medium: { cls: 'conf-mid', label: ' Medium Confidence' },
+  Low: { cls: 'conf-low', label: ' Low Confidence' },
 }
 
 // Check if browser supports speech recognition
@@ -49,7 +49,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
     }
   }, [])
 
-  // ── Speech Synthesis (text-to-speech for answers) ──
+  //  Speech Synthesis (text-to-speech for answers) 
   function speakAnswer(text) {
     if (!text || !speakerEnabled) return
     const plainText = text
@@ -72,7 +72,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
     window.speechSynthesis.speak(utterance)
   }
 
-  // ── Speaker toggle ──
+  //  Speaker toggle 
   function toggleSpeaker() {
     if (speakerEnabled) {
       window.speechSynthesis.cancel()
@@ -83,7 +83,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
     }
   }
 
-  // ── Core submit logic — works for both typed and voice ──
+  //  Core submit logic — works for both typed and voice 
   const submitQuestion = useCallback(async (text, wasVoice) => {
     if (!text.trim() || !activeSubjectId) return
     if (!isSignedIn) { openSignIn(); return }
@@ -117,7 +117,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
     }
   }, [activeSubjectId, speakerEnabled])
 
-  // ── Typed submit (Ask button / Enter key) ──
+  //  Typed submit (Ask button / Enter key) 
   function handleSend() {
     if (!input.trim() || loading) return
     if (!isSignedIn) { openSignIn(); return }
@@ -128,7 +128,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
     submitQuestion(input, askedByVoice)
   }
 
-  // ── Voice input ──
+  //  Voice input 
   function toggleVoice() {
     if (!SpeechRecognition) {
       alert('Voice input is not supported in your browser. Please try Chrome.')
@@ -199,7 +199,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
 
         {subject && (
           <span className="subject-badge">
-            <span>✦</span>
+            <span></span>
             {subject.name}
           </span>
         )}
@@ -211,7 +211,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
           onClick={toggleSpeaker}
           title={speakerEnabled ? 'Voice answers ON — click to mute' : 'Voice answers OFF — click to unmute'}
         >
-          {speakerEnabled ? '🔊' : '🔇'}
+          {speakerEnabled ? '' : ''}
         </button>
         <button className="btn btn-ghost" onClick={() => setMessages([])}>Clear</button>
       </div>
@@ -220,7 +220,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
       <div className="chat-msgs">
         {noSubject ? (
           <div className="empty">
-            <span className="empty-icon">💬</span>
+            <span className="empty-icon"></span>
             <p style={{ fontSize: '1.1rem', fontWeight: 600 }}>Welcome to Ask Notes</p>
             {subjects.length > 0 ? (
               <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem' }}>
@@ -236,7 +236,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
           <>
             {messages.length === 0 && (
               <div className="empty">
-                <span className="empty-icon">💬</span>
+                <span className="empty-icon"></span>
                 Ask anything about <strong>{subject?.name}</strong>
               </div>
             )}
@@ -274,7 +274,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
                           className="evidence-toggle"
                           onClick={() => setExpanded(p => ({ ...p, [i]: !p[i] }))}
                         >
-                          {expanded[i] ? '▾ Hide Evidence' : '▸ Show Evidence'}
+                          {expanded[i] ? ' Hide Evidence' : ' Show Evidence'}
                         </button>
                         {expanded[i] && (
                           <div className="snippets">
@@ -318,7 +318,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
               setAskedByVoice(false)
             }}
             onKeyDown={e => e.key === 'Enter' && !e.shiftKey && handleSend()}
-            placeholder={noSubject ? 'Select a subject above to start asking...' : isListening ? '🎤 Listening...' : `Ask about ${subject?.name || 'your notes'}...`}
+            placeholder={noSubject ? 'Select a subject above to start asking...' : isListening ? ' Listening...' : `Ask about ${subject?.name || 'your notes'}...`}
             disabled={loading || noSubject}
           />
           <button
@@ -327,7 +327,7 @@ export default function ChatPanel({ subjects, activeSubjectId, onSubjectChange }
             disabled={loading || noSubject}
             title={isListening ? 'Stop listening' : 'Voice input'}
           >
-            {isListening ? '⏹' : '🎤'}
+            {isListening ? '' : ''}
           </button>
         </div>
         <button

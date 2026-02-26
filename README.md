@@ -1,4 +1,4 @@
-# AskMyNotes 📚
+# AskMyNotes 
 
 > Subject-scoped study assistant — powered by Gemini 1.5 Flash
 

@@ -2,15 +2,15 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-reac
 
 export default function Sidebar({ subjects, activeTab, activeSubjectId, onTab, onSubject }) {
   const tabs = [
-    { id: 'setup', icon: '◈', label: 'Setup' },
-    { id: 'chat', icon: '◉', label: 'Ask Notes' },
-    { id: 'study', icon: '◎', label: 'Study Mode' },
+    { id: 'setup', icon: '', label: 'Setup' },
+    { id: 'chat', icon: '', label: 'Ask Notes' },
+    { id: 'study', icon: '', label: 'Study Mode' },
   ]
 
   return (
     <aside className="sidebar">
       <div className="sidebar-brand">
-        <span className="brand-icon">✦</span>
+        <span className="brand-icon"></span>
         <span className="brand-name">AskMyNotes</span>
       </div>
 
@@ -36,7 +36,7 @@ export default function Sidebar({ subjects, activeTab, activeSubjectId, onTab, o
               className={`subject-pill ${activeSubjectId === s._id ? 'subject-active' : ''}`}
               onClick={() => { onSubject(s._id); onTab('chat') }}
             >
-              <span className="subject-dot">●</span>
+              <span className="subject-dot"></span>
               <span className="subject-name">{s.name}</span>
               <span className="subject-meta">{s.noteCount} files</span>
             </button>
@@ -51,7 +51,7 @@ export default function Sidebar({ subjects, activeTab, activeSubjectId, onTab, o
         </SignedIn>
         <SignedOut>
           <SignInButton mode="modal">
-            <button className="btn-signin-sidebar">🔑 Sign In</button>
+            <button className="btn-signin-sidebar"> Sign In</button>
           </SignInButton>
         </SignedOut>
         <span>Powered by Gemini 1.5</span>
